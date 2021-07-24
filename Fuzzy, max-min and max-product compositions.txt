@@ -1,0 +1,89 @@
+// @Author : Akshay Yadav
+
+#include <bits/stdc++.h>
+#define loop(n) for(int i = 1 ; i <=  n ; i++)
+#define loop2(n) for(int j = 1 ; j <= n ; j++)
+typedef float f;
+
+using namespace std;
+
+void maxMin(){
+    int m, n ,p;
+    f u1[5][5], u2[5][5], u3[5][5], c[p]; f max;
+    
+    cin >> m >> n >> p;
+    
+    loop(m){
+        loop2(n){
+            cin >> u1[i][j];
+        }
+    }
+    
+    loop(n){
+        loop2(p){
+            cin >> u2[i][j];
+        }
+    }
+    
+    
+    // Max-min compositon
+    
+    loop(m){
+        loop2(p){
+            for(int k = 1 ; k <= n ; k++){
+                if(u1[i][k] < u2[k][j])
+                    c[k] = u1[i][k];
+                else
+                    c[k] = u2[k][j];
+            }
+            max = c[1];
+            for(int k = 2 ; k <= n ; k++){
+                if(c[k] > max)
+                    max = c[k];
+            }
+            u3[i][j] = max;
+        }
+    }
+    
+    cout<< "The Max-min Composition is :"<<"\n";
+    
+    loop(m){
+        loop2(p){
+            printf("%.2f\t", u3[i][j]);
+        }
+        cout<<"\n";
+    }
+    
+    //max-product composition
+    
+        loop(m){
+            loop2(p){
+                for(int k=1; k<=n; k++){
+                        c[k]=u1[i][k] * u2[k][j];
+                        }
+                        max = c[1];
+                        for(int k=2; k<=n; k++){
+                            if(c[k]>max)
+                                max = c[k];                                        
+                                
+                        }
+                        u3[i][j] = max;                        
+                }
+        }
+        printf("\nThe Max-product composistion is: \n");
+        loop(m){
+                loop2(p){
+                        printf("%.2f\t",u3[i][j]);      
+                }
+                cout<<"\n";
+        }
+    
+    
+}
+
+signed main()
+{
+   maxMin(); 
+   
+   return 0;
+}
